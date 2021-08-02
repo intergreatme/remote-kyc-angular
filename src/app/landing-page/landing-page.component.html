@@ -1,0 +1,38 @@
+<div style="background-color: blue;">
+
+<div class="main-container" >
+  <div class="card shadow bg-white rounded;" style="padding: 20px;">
+    <h1>Do a eligibility check</h1>
+    <h2>Firstly once the user logs in, we want to check the eligibility <br />
+      state based on the complete state we will route as follow</h2>
+    <p style="color: red">Complete State: INCOMPLETE route -> Profile </p>
+    <p style="color: green">Complete State: COMPLETE route -> Complete </p>
+    <p style="color: orange">Complete State: TIMEOUT route -> TIMEOUT ERROR </p>
+  </div>
+  <!-- <div><button mat-raised-button (click)="getInfo()">Get that info buddy!</button></div> -->
+  <br />
+  <div><button mat-raised-button color="primary" (click)="doEligibilityCheck()">Check eligibility!</button></div>
+
+  <div class="card shadow bg-white rounded;">
+    <div>
+      <br />
+      <h2>Transaction ID/Share ID of request: </h2>
+      <h3 style="color: green">{{shareID}}</h3>
+      <br />
+      <h2>Complete Status: </h2>
+      <h3 style="color: green">{{completeState}}</h3>
+      <br />
+      <h2>Auth Token: </h2>
+      <div class="container" style="word-wrap: break-word;">
+        <h3 style="color: green">
+          <p>{{authToken}}</p>
+        </h3>
+      </div>
+      <br />
+      <h2>Is user eligible? </h2>
+      <h3 style="color: green">{{eligible}}</h3>
+      <br />
+    </div>
+    <button mat-raised-button color="primary" (click)="routeMe()">Click to route to correct page!</button>
+  </div>
+</div>

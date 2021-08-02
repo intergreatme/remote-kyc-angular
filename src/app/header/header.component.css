@@ -1,0 +1,10 @@
+.header {
+  /* padding: 30px; */
+  text-align: center;
+  background: #222222;
+  color: white;
+  font-size: 15px;
+  font-kerning: inherit;
+  font-weight: normal;
+  font-family: Roboto, "Helvetica Neue", Arial;
+}

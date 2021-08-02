@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://dev.intergreatme.com/kyc/za",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

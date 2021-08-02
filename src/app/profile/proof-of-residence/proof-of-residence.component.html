@@ -1,0 +1,24 @@
+<div class="main-container">
+  <h2>Proof of Residence</h2>
+  <div class="inside-container">
+    <div class="card shadow rounded;" style="padding: 20px; height: 500px; background: #646464a2; color: black;">
+      <h3>You need to upload a valid Proof of Residence</h3>
+      <div *ngIf="image == null">
+        <img src="../../assets/house.png" alt="Proof of residence">
+      </div>
+      <div *ngIf="image != null">
+        <img src="{{image}}" alt="Proof of residence">
+      </div>
+      <div class="col">
+        <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+          <span>Upload</span>
+          <input #fileInput hidden type="file" (change)="uploadFile($event)" placeholder="Upload file"
+            accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+        </button>
+      </div>
+      <div>
+        <button mat-raised-button (click)="onContinue()">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>

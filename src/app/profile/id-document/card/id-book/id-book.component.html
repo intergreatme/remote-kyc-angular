@@ -1,0 +1,26 @@
+<div class="main-container">
+  <h2>ID Book</h2>
+  <div class="inside-container">
+    <div class="card shadow rounded;"
+      style="padding: 20px 0px 0px 30px; height: 100px; background: #0f8bff; color: white;">
+      <a href="#" style="color: black;" routerLink="inside">
+        <h4>Inside of ID Book</h4>
+      </a>
+    </div>
+  </div>
+  <div class="inside-container">
+    <div class="card shadow rounded;"
+      style="padding: 20px 0px 0px 40px; height: 100px; background: #5c9fe2; color: white">
+      <a href="#" style="color: black;" routerLink="selfie">
+        <h4>Selfie with ID Book</h4>
+      </a>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="validateFile()">Validate ID Book</button>
+  </div>
+  <br>
+  <div>
+    <button mat-raised-button (click)="onContinue()">Continue</button>
+  </div>
+</div>

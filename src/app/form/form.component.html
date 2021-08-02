@@ -1,0 +1,149 @@
+<div class="main-container">
+  <div class="card shadow bg-white rounded;" style="padding: 20px;">
+    <form [formGroup]="allowlistFormGroup">
+      <h3>Customer details</h3>
+      <hr>
+      <div class="row">
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="ID number" name="idNumber" formControlName="idNumber"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('idNumber').invalid && allowlistFormGroup.get('idNumber').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('idNumber').invalid && allowlistFormGroup.get('idNumber').touched) || allowlistFormGroup.get('idNumber').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('idNumber').errors?.required">ID number is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="First name" name="firstName" formControlName="firstName"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('firstName').invalid && allowlistFormGroup.get('firstName').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('firstName').invalid && allowlistFormGroup.get('firstName').touched) || allowlistFormGroup.get('firstName').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('firstName').errors?.required">First name is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Last name" name="lastName" formControlName="lastName"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('lastName').invalid && allowlistFormGroup.get('lastName').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('lastName').invalid && allowlistFormGroup.get('lastName').touched) || allowlistFormGroup.get('lastName').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('lastName').errors?.required">Last name is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Mobile Number" name="mobileNumber"
+            formControlName="mobileNumber" autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('mobileNumber').invalid && allowlistFormGroup.get('mobileNumber').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('mobileNumber').invalid && allowlistFormGroup.get('mobileNumber').touched) || allowlistFormGroup.get('mobileNumber').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('mobileNumber').errors?.required">Mobile number is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Email address" name="email" formControlName="email"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('email').invalid && allowlistFormGroup.get('email').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('email').invalid && allowlistFormGroup.get('email').touched) || allowlistFormGroup.get('email').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('email').errors?.required">Email is
+              required</small>
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('email').errors?.email">Not a valid email
+              address</small>
+          </div>
+        </div>
+      </div>
+        <hr>
+        <h3>Address</h3>
+        <hr>
+        <div class="row">
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Complex Unit" name="unitComplex"
+            formControlName="unitComplex" autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('unitComplex').invalid && allowlistFormGroup.get('unitComplex').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('unitComplex').invalid && allowlistFormGroup.get('unitComplex').touched) || allowlistFormGroup.get('unitComplex').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('unitComplex').errors?.required">Complex Unit is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Address Line 1" name="line1" formControlName="line1"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('line1').invalid && allowlistFormGroup.get('line1').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('line1').invalid && allowlistFormGroup.get('line1').touched) || allowlistFormGroup.get('line1').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('line1').errors?.required">Address line 1 is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Address Line 2" name="line2" formControlName="line2"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('line2').invalid && allowlistFormGroup.get('line2').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('line2').invalid && allowlistFormGroup.get('line2').touched) || allowlistFormGroup.get('line2').dirty">
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Suburb" name="suburb" formControlName="suburb"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('suburb').invalid && allowlistFormGroup.get('suburb').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('suburb').invalid && allowlistFormGroup.get('suburb').touched) || allowlistFormGroup.get('suburb').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('suburb').errors?.required">Suburb is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="City" name="city" formControlName="city" autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('city').invalid && allowlistFormGroup.get('city').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('city').invalid && allowlistFormGroup.get('city').touched) || allowlistFormGroup.get('city').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('city').errors?.required">City is required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Province" name="province" formControlName="province"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('province').invalid && allowlistFormGroup.get('province').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('province').invalid && allowlistFormGroup.get('province').touched) || allowlistFormGroup.get('province').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('province').errors?.required">Province is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Postal Code" name="postalCode" formControlName="postalCode"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('postalCode').invalid && allowlistFormGroup.get('postalCode').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('postalCode').invalid && allowlistFormGroup.get('postalCode').touched) || allowlistFormGroup.get('postalCode').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('postalCode').errors?.required">Postal code is
+              required</small>
+          </div>
+        </div>
+        <div class="inputField">
+          <input matInput class="form-control" placeholder="Country" name="country" formControlName="country"
+            autocomplete="off"
+            [class.is-invalid]="allowlistFormGroup.get('country').invalid && allowlistFormGroup.get('country').touched">
+          <div
+            *ngIf="(allowlistFormGroup.get('country').invalid && allowlistFormGroup.get('country').touched) || allowlistFormGroup.get('country').dirty">
+            <small class="text-danger" *ngIf="allowlistFormGroup.get('country').errors?.required">Country is
+              required</small>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-raised-button style="float: right; color: white" color="primary" type="button" (click)="onNext()">
+          <span>Next</span>
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
