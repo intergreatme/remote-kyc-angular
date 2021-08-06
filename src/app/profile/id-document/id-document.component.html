@@ -1,19 +1,38 @@
-<div class="main-container">
-    <div class="inside-container">
-      <div class="card shadow rounded;" style="padding: 20px 0px 0px 40px; height: 100px; background: #5c9fe2; color: white;">
-        <a href="#" style="color: black;" routerLink="id-card">
-          <h4 for="ID-Book" style="vertical-align: middle;">ID Card</h4>
-        </a>
+<div class="main-container" style="font-size: 20px;">
+  <h2>Choose your ID Documentation type</h2>
+  <div class="inside-container">
+    <div class="card shadow rounded;" style="padding: 20px; height: 120px; border-radius: 30px; background: black;
+      color: white;">
+      <div (click)="routeToIdBook()">
+        <div class="row">
+          <div class="column">
+            <img src="../../assets/examples/idBook_inside_no_border.jpg" height="100px" width="150px">
+          </div>
+          <div class="column">
+            <p for="ID" style="font-size: 25px;">ID Book</p>
+          </div>
+          <div class="column"></div>
+        </div>
       </div>
     </div>
-    <div class="inside-container">
-      <div class="card shadow rounded;" style="padding: 20px 0px 0px 40px; height: 100px; background: #5c9fe2; color: white;">
-        <a href="#" style="color: black;" routerLink="id-book">
-          <h4 for="ID-Book" style="vertical-align: middle;">ID Book</h4>
-        </a>
+  </div>
+  <div class="inside-container">
+    <div class="card shadow rounded;"
+      style="padding: 20px; height: 120px;  border-radius: 30px; background: black; color: white;">
+      <div (click)="routeToIdCard()">
+        <div class="row">
+          <div class="column">
+            <img src="../../assets/examples/idCard_front_no_border.jpg" height="100px" width="150px">
+          </div>
+          <div class="column">
+            <p for="ID" style="font-size: 25px;">ID Card</p>
+          </div>
+          <div class="column"></div>
+        </div>
       </div>
     </div>
-    <div>
-      <button mat-raised-button color="primary" (click)="onBack()">Back</button>
-    </div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="onBack()">Back</button>
+  </div>
 </div>

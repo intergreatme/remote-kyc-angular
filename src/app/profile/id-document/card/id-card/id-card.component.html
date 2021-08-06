@@ -1,34 +1,69 @@
 <div class="main-container">
-  <h2>ID Card</h2>
-  <div class="inside-container">
-    <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; background: #0f8bff;
-      color: white;">
-      <a href="#" style="color: black;" routerLink="front">
-        <h4>Front of ID Card</h4>
-      </a>
+  <h2>ID CARD</h2>
+  <div class="block-container">
+    <div class="row">
+      <div class="cardidcard">
+        <div>
+          <div *ngIf="selfie == null">
+            <img src="../../../../../assets/examples/idCard_selfie.jpg" style="height: 350px; width: 250px;">
+          </div>
+          <div *ngIf="selfie != null">
+            <img src="{{selfie}}" alt="selfie" style="height: 350px; width: 250px;">
+          </div>
+          <p for="selfie" style="font-size: 25px;">Selfie with ID Card</p>
+          <div class="col">
+            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+              <span>Upload</span>
+              <input #fileInput hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
+                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cardidcard">
+        <div>
+          <div *ngIf="frontOfCard == null">
+            <img src="../../../../../assets/examples/idCard_front.jpg" style="height: 350px; width: 450px;">
+          </div>
+          <div *ngIf="frontOfCard != null">
+            <img src="{{frontOfCard}}" alt="front of ID card" style="height: 350px; width: 400px;">
+          </div>
+          <p for="id-front" style="font-size: 25px;">ID Card Front</p>
+          <div class="col">
+            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+              <span>Upload</span>
+              <input #fileInput hidden type="file" (change)="uploadFileForFrontOfCard($event)" placeholder="Upload file"
+                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cardidcard">
+        <div>
+          <div *ngIf="backOfCard == null">
+            <img src="../../../../../assets/examples/idCard_back.jpg" style="height: 350px; width: 450px;">
+          </div>
+          <div *ngIf="backOfCard != null">
+            <img src="{{backOfCard}}" alt="back of ID card" style="height: 350px; width: 400px;">
+          </div>
+          <p for="id-back" style="font-size: 25px;">ID Card Back</p>
+          <div class="col">
+            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+              <span>Upload</span>
+              <input #fileInput hidden type="file" (change)="uploadFileForBackOfCard($event)" placeholder="Upload file"
+                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="inside-container">
-    <div class="card shadow rounded;" style="padding: 20px 0px 0px 40px; height: 100px; background: #5c9fe2;
-      color: white">
-      <a href="#" style="color: black;" routerLink="back">
-        <h4>Back of ID Card</h4>
-      </a>
-    </div>
-  </div>
-  <div class="inside-container">
-    <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; background: #a5d3ff;
-      color: white;">
-      <a href="#" style="color: black;" routerLink="selfie">
-        <h4>Selfie with ID Card</h4>
-      </a>
-    </div>
-  </div>
-  <div>
+  <div style="vertical-align: center;">
     <button mat-raised-button color="primary" (click)="validateFile()">Validate ID Card</button>
   </div>
   <br>
-  <div>
+  <div style="vertical-align: center;">
     <button mat-raised-button (click)="onContinue()">Continue</button>
   </div>
 </div>
+

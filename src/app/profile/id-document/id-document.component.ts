@@ -15,6 +15,14 @@ export class IDDocumentComponent implements OnInit {
 
   onBack() {
     //Route back to the Profile component
-    this.router.navigate(['/'])
+    this.router.navigate(["/"])
+  }
+
+  routeToIdBook() {
+    this.router.navigate(["id-documentation/id-book"]);
+  }
+
+  routeToIdCard() {
+    this.router.navigate(["id-documentation/id-card"]);
   }
 }

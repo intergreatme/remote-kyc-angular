@@ -15,14 +15,11 @@ import { IdBookComponent } from './profile/id-document/card/id-book/id-book.comp
 import { ProofOfResidenceComponent } from './profile/proof-of-residence/proof-of-residence.component';
 import { LivelinessComponent } from './profile/liveliness/liveliness.component';
 import { IDDocumentComponent } from './profile/id-document/id-document.component';
-import { FrontComponent } from './profile/id-document/card/id-card/uploads/front/front.component';
-import { BackComponent } from './profile/id-document/card/id-card/uploads/back/back.component';
-import { InsideComponent } from './profile/id-document/card/id-book/uploads/inside/inside.component';
-import { BookSelfieComponent } from './profile/id-document/card/id-book/uploads/selfie/book-selfie.component';
-import { CardSelfieComponent } from './profile/id-document/card/id-card/uploads/selfie/card-selfie.component';
 import { IgmService } from './_services/igm.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,11 +33,6 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ProofOfResidenceComponent,
     LivelinessComponent,
     IDDocumentComponent,
-    FrontComponent,
-    BackComponent,
-    BookSelfieComponent,
-    CardSelfieComponent,
-    InsideComponent,
     LandingPageComponent,
   ],
   imports: [
@@ -51,6 +43,12 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: (environment.production, environment.dev, environment.local),
+    //   // Register the ServiceWorker as soon as the app is stable
+    //   // or after 30 seconds (whichever comes first).
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // }),
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [IgmService],

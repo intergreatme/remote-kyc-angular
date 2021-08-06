@@ -1,35 +1,108 @@
-<div class="main-container">
-  <!-- <div class="card shadow bg-white rounded;" style="padding: 20px;"> -->
-    <h2>User Profile</h2>
-    <div class="inside-container">
-      <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; background: #0f8bff;
+
+  <div class="main-container" style="font-size: 20px;">
+    <!-- <div class="card shadow bg-white rounded;" style="padding: 20px;"> -->
+  <h2>User Profile</h2>
+  <div class="inside-container">
+    <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; border-radius: 30px; background: black;
       color: white;">
-        <a href="#" style="color: black;" routerLink="id-documentation">
-          <img src="../../assets/id.png" height="50px" width="70px">
-          <h4 for="ID" style="vertical-align: middle;">ID Documentation</h4>
-        </a>
+     <div (click)="routeToID()">
+       <div class="row">
+         <div class="column">
+           <img src="../../assets/id.png" height="50px" width="70px">
+          </div>
+          <div class="column">
+            <p for="ID">ID Documentation</p>
+          </div>
+          <div class="column">
+            <ng-container *ngIf="idDocumentStatus === documentStatus.INCOMPLETE; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/failed.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="idDocumentStatus === documentStatus.COMPLETE; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/validated.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="idDocumentStatus === documentStatus.REJECTED; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/failed.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="!idDocumentStatus; then checking;"></ng-container>
+            <ng-template #checking>
+              <p>Checking...</p>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="inside-container">
-      <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; background: #5c9fe2;
+  </div>
+  <div class="inside-container">
+    <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; border-radius: 30px;  background: black;
       color: white">
-        <a href="#" style="color: black;" routerLink="liveliness">
-          <img src="../../assets/avatar.png" height="50px" width="70px">
-          <h4 for="Liveliness" style="vertical-align: middle;">Liveliness</h4>
-        </a>
+      <div (click)="routeToLiveliness()">
+        <div class="row">
+          <div class="column">
+            <img src="../../assets/avatar.png" height="50px" width="70px">
+          </div>
+          <div class="column">
+            <p for="liveliness">Liveliness</p>
+          </div>
+          <div class="column">
+            <ng-container *ngIf="livelinessStatus === documentStatus.INCOMPLETE; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/failed.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="livelinessStatus === documentStatus.COMPLETE; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/validated.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="livelinessStatus === documentStatus.REJECTED; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/failed.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="!livelinessStatus; then checking;"></ng-container>
+            <ng-template #checking>
+              <p>Checking...</p>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="inside-container">
-      <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; background: #a5d3ff;
+  </div>
+  <div class="inside-container">
+    <div class="card shadow rounded;" style="padding: 20px 0px 0px 30px; height: 100px; border-radius: 30px; background: black;
       color: white;">
-      <a href="#" style="color: black;" routerLink="proof-of-residence">
-        <img src="../../assets/house.png" height="50px" width="70px">
-          <h4 for="POR" style="vertical-align: middle;"> Proof of Residence</h4>
-        </a>
+      <div (click)="routeToPor()">
+        <div class="row">
+          <div class="column">
+            <img src="../../assets/house.png" height="50px" width="70px">
+          </div>
+          <div class="column">
+            <p for="POR">Proof of Residence</p>
+          </div>
+          <div class="column">
+            <ng-container *ngIf="porStatus === documentStatus.INCOMPLETE; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/failed.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="porStatus === documentStatus.COMPLETE; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/validated.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="porStatus === documentStatus.REJECTED; then result;"></ng-container>
+            <ng-template #result>
+              <img src="../../assets/failed.svg" height="50px" width="70px" />
+            </ng-template>
+            <ng-container *ngIf="!porStatus; then checking;"></ng-container>
+            <ng-template #checking>
+              <p>Checking...</p>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
-    <br />
-    <div><button mat-raised-button (click)="getProfile()">Get Profile!</button></div>
-    <div><button mat-raised-button color="primary" (click)="doEligibilityCheck()">Check eligibility!</button></div>
-  <!-- </div> -->
-</div>
+  </div>
+  <br />
+  <!-- <div><button mat-raised-button (click)="getProfile()">Get Profile!</button></div>
+    <div><button mat-raised-button color="primary" (click)="doEligibilityCheck()">Check eligibility!</button></div> -->
+    <!-- </div> -->
+  </div>

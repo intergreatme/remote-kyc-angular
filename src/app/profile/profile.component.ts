@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { DocumentStatusEnum } from '../_models/document-status.enum';
 import { Eligible } from '../_models/eligible.model';
 import { ProfileResponse } from '../_models/profile-response.model';
 import { ResponseWrapperCodeEnum } from '../_models/response-wrapper-code.enum';
@@ -21,38 +22,49 @@ export class ProfileComponent implements OnInit {
   eligible: boolean;
   shareID: string;
 
+  documentStatus = DocumentStatusEnum;
+  idDocumentStatus: DocumentStatusEnum;
+  livelinessStatus: DocumentStatusEnum;
+  porStatus: DocumentStatusEnum;
+
   //Hardcoded info
   shortlist = "-";
-  origingID = "O ID";
-  txID = "TXID";
+  originTxID = environment.originID;
+  txID = environment.txID;
 
   constructor(
               private igmService: IgmService,
               private cookieService: CookieService,
+              private router: Router
              ) { }
 
   ngOnInit(): void {
 
+    //Check if Eligibility has already been done - IF so, then dont call eligible check again and only get profile.
+    //Check if authcookie exists, if not do the eligibile check.
+    var authToken = this.cookieService.getCookie("kyc-auth");
+
+    if(authToken != null) {
+      console.log("Auth cookie exists, therefor only Get profile is called.");
+      this.getProfile()
+    }
+    else {
+      console.log("No auth cookie exists, therefor doing Eligibility check.");
+      this.doEligibilityCheck();
+    }
+
   }
 
   getProfile() {
-    console.log("Getting profile now");
+    console.log("Getting profile");
     this.igmService.getProfile()
     .pipe().subscribe((wrappedResponse: ResponseWrapper<ProfileResponse>) => {
       const code = wrappedResponse.code;
-      console.log(code);
       if(code != ResponseWrapperCodeEnum.OK) {
         console.log("Profile Failed: " + code);
       } else {
-        console.log("200 status code on get Profile! Do the things!");
-
+        console.log("Response OK, continue processing response");
         const response = wrappedResponse.data;
-        console.log("Profile response is: " + response);
-
-        console.log(JSON.stringify(response));
-        //Assign the response to local variables.
-        console.log(response);
-
         let profileData = {
           id: response['id'],
           origin_tx_id: response['origin_tx_id'],
@@ -69,13 +81,29 @@ export class ProfileComponent implements OnInit {
           liveliness_state: response['liveliness_state'],
           address: response['address'],
         }
-        console.log("Profile Data is now assigned" + JSON.stringify(profileData));
+        console.log(profileData);
+
+        if(profileData.documents == null) {
+          this.idDocumentStatus = DocumentStatusEnum.INCOMPLETE;
+          this.livelinessStatus = DocumentStatusEnum.INCOMPLETE;
+          this.porStatus = DocumentStatusEnum.INCOMPLETE;
+        }
       }
     });
   }
 
+
   doEligibilityCheck(){
-    this.igmService.checkEligibility(this.txID, this.origingID)
+    if(!this.txID) {
+      console.log("No Tx ID found.");
+    }
+    if(!this.originTxID) {
+      console.log("No Origin Tx ID found.");
+    }
+
+    console.log("Doing Eligibility check on TX: " + this.txID + " and  Origin TX" + this.originTxID);
+
+    this.igmService.checkEligibility(this.txID, this.originTxID)
     .pipe().subscribe((wrappedResponse: ResponseWrapper<Eligible>) => {
       const code = wrappedResponse.code;
       console.log("Returned response code: " + code);
@@ -92,36 +120,24 @@ export class ProfileComponent implements OnInit {
           completeState: response['complete_state'],
           authToken: response['auth_token'],
         };
-        //Typical response:
-        // Eligible: true
-        // Share ID: 86e38a5d-df14-4885-bb4c-9c642ec72a21
-        // Complete state: INCOMPLETE
-        // Auth Token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4NmUzOGE1ZC1kZjE0LTQ4ODUtYmI0Yy05YzY0MmVjNzJhMjEiLCJhdWQiOiJJR01fS1lDX01PRFVMRSIsIm5iZiI6MTYyMzc1MjcwOCwicm9sZXMiOlsiS1lDX1NIQVJFIl0sImRpc3BsYXkiOiJHZXJ0IFN0ZWVua2FtcCIsImlzcyI6IklOVEVSR1JFQVRNRS1LWUMiLCJzaGFyZSI6Ijg2ZTM4YTVkLWRmMTQtNDg4NS1iYjRjLTljNjQyZWM3MmEyMSIsImV4cCI6MTYyNDM1NzUwOCwiaWF0IjoxNjIzNzUyNzA4LCJjb25maWciOiI0MWQ5ZGI2OC1jZWJmLTQwNDUtYTA1YS02NWY5MWJiYzQwMTAiLCJqdGkiOiI4YzhjOGQ0Mi05YThmLTQ1OTQtODk5NS01ZThjZDVhOTIxMjYifQ.10witNF7AvsPl2FuFAnqtbDES4k_QfUIIMgmRhrqJIw
 
-        // this.userEligible$.next(data);
-        // this.completeState = this.userEligible$.value.completeState;
-        // this.authToken = this.userEligible$.value.authToken;
-        // this.eligible = this.userEligible$.value.eligible;
-        // this.shareID = this.userEligible$.value.shareID;
-
-        console.log("Eligible: " + data.eligible);
-        console.log("Share ID: " + data.shareID);
-        console.log("Complete state: " + data.completeState);
-        console.log("Auth Token: " + data.authToken);
-
-        //TODO Check if eligible is true & share ID is not null. Then continue
-        //Check What the complete state is:
-        //AWAITING-VERIFICATION  -> Already completed still busy processing.
-        //TIMEOUT - Link expired
-        //CONSENT & COMPLETE -> Transaction already completed
-        //INCOMPLETE, store the authToken as a cookie and start the process.
-
-
-        //NOTE. THE AUTH_TOKEN is already being set once you call the API as kyc-auth cookie. You do not need to set a cookie yourself.
-        //However to get the cookie, use a service written like I did under services/cookie.services.ts.
-        var auth = this.cookieService.getCookie("kyc-auth");
-        console.log("The kyc-auth cookie token is: " + auth);
+        if(data.completeState == "INCOMPLETE") {
+          console.log("CompleteState is: " + data.completeState);
+          this.getProfile()
+        }
       }
     });
+  }
+
+  routeToID() {
+    this.router.navigate(["id-documentation"])
+  }
+
+  routeToPor() {
+    this.router.navigate(["proof-of-residence"])
+  }
+
+  routeToLiveliness() {
+    this.router.navigate(["liveliness"])
   }
 }

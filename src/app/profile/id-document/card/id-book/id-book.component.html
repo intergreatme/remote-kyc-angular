@@ -1,26 +1,51 @@
-<div class="main-container">
-  <h2>ID Book</h2>
-  <div class="inside-container">
-    <div class="card shadow rounded;"
-      style="padding: 20px 0px 0px 30px; height: 100px; background: #0f8bff; color: white;">
-      <a href="#" style="color: black;" routerLink="inside">
-        <h4>Inside of ID Book</h4>
-      </a>
+<div class="main-container" style="vertical-align: center; font-size: 20px;">
+  <h2>ID BOOK</h2>
+  <div class="block-container">
+    <div class="row">
+      <div class="cardidbook">
+        <div>
+          <div *ngIf="selfie == null">
+            <img src="../../../../../assets/examples/idBook_selfie.jpg" style="height: 350px; width: 250px;">
+          </div>
+          <div *ngIf="selfie != null">
+            <img src="{{selfie}}" alt="selfie" style="height: 350px; width: 250px;">
+          </div>
+          <p for="selfie" style="font-size: 25px;">Selfie with ID Book</p>
+          <div class="col">
+            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+              <span>Upload</span>
+              <input #fileInput hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
+                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cardidbook">
+        <div>
+          <div *ngIf="inside == null">
+            <img src="../../../../../assets/examples/idBook_inside.jpg" style="height: 350px; width: 400px;">
+          </div>
+          <div *ngIf="inside != null">
+            <img src="{{inside}}" alt="inside" style="height: 350px; width: 400px;">
+          </div>
+          <p for="inside" style="font-size: 25px;">ID Book Inside</p>
+          <div class="col">
+            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+              <span>Upload</span>
+              <input #fileInput hidden type="file" (change)="uploadFileForInside($event)" placeholder="Upload file"
+                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="inside-container">
-    <div class="card shadow rounded;"
-      style="padding: 20px 0px 0px 40px; height: 100px; background: #5c9fe2; color: white">
-      <a href="#" style="color: black;" routerLink="selfie">
-        <h4>Selfie with ID Book</h4>
-      </a>
-    </div>
-  </div>
-  <div>
+  <div style="vertical-align: center;">
     <button mat-raised-button color="primary" (click)="validateFile()">Validate ID Book</button>
   </div>
   <br>
-  <div>
+  <div style="vertical-align: center;">
     <button mat-raised-button (click)="onContinue()">Continue</button>
   </div>
 </div>
+

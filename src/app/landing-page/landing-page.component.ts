@@ -1,5 +1,8 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Eligible } from '../_models/eligible.model';
 import { ResponseWrapperCodeEnum } from '../_models/response-wrapper-code.enum';
 import { ResponseWrapper } from '../_models/response-wrapper.model';
@@ -21,12 +24,13 @@ export class LandingPageComponent implements OnInit {
 
   //Hardcoded info
   shortlist = "-";
-  origingID = "1ea745fc-bdd9-46cb-84ae-21382dc064a8";
-  txID = "fd3f1c86-a73b-4734-bed3-5f1f975a4e3e";
+  origingID = environment.originID;
+  txID = environment.txID;
 
   constructor(
               private igmService: IgmService,
-              private cookieService: CookieService
+              private cookieService: CookieService,
+              private router: Router
              ) { }
 
   ngOnInit(): void {
@@ -90,5 +94,6 @@ export class LandingPageComponent implements OnInit {
   }
 
   routeMe() {
+    this.router.navigate(["profile"]);
   }
 }

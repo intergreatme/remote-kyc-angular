@@ -1,27 +1,32 @@
 .main-container {
-  margin-top: 20px;
+  margin-top: 5px;
   margin-left: 20%;
   margin-right: 20%;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
   border-radius: 30px;
 }
 
-.inside-container {
-  margin: 10px;
-  text-align: center;
-  border-radius: 10px;
+.block-container {
+  margin: 5px;
+  border-radius: 30px;
 }
 
+.row {
+  display: flex;
+}
 
-img {
-  border-radius: 4px;
+.column {
+  flex: 33.33%;
   padding: 5px;
-  margin: 10px;
-  width: 400px;
 }
 
-button {
-  margin-top: 20px;
-  width: 300px;
+.porCard {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 30px;
+  border-width: 15px;
+  background: rgb(255, 255, 255);
+  color: black;
+  flex: 1;
 }

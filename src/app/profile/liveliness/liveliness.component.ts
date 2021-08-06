@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { DocumentTypeEnum } from 'src/app/_models/document-type.enum';
 import { LivelinessInstructions } from 'src/app/_models/liveliness-instructions.model';
 import { ResponseWrapperCodeEnum } from 'src/app/_models/response-wrapper-code.enum';
 import { ResponseWrapper } from 'src/app/_models/response-wrapper.model';
@@ -9,11 +12,26 @@ import { IgmService } from 'src/app/_services/igm.service';
   templateUrl: './liveliness.component.html',
   styleUrls: ['./liveliness.component.css']
 })
-export class LivelinessComponent implements OnInit {
+export class LivelinessComponent implements OnInit, OnDestroy {
+  liveliness: any;
+  fileType: string;
+  txID: string;
+  livelinessSub: Subscription;
+  uploadResponse: any;
 
-  constructor(private igmService: IgmService) { }
+  constructor(
+    private igmService: IgmService,
+    private router: Router,
+  ) {
+  }
 
   ngOnInit(): void {
+  }
+
+  uploadFile(event) {
+  }
+
+  validateFile() {
   }
 
   getLiveliness() {
@@ -56,4 +74,17 @@ export class LivelinessComponent implements OnInit {
       });
   }
 
+
+  onContinue() {
+    //Route back to the Profile component
+    this.router.navigate(['/'])
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.livelinessSub) {
+      this.livelinessSub.unsubscribe();
+    }
+  }
 }

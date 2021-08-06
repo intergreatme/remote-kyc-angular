@@ -17,16 +17,14 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./proof-of-residence.component.css']
 })
 export class ProofOfResidenceComponent implements OnInit, OnDestroy {
-
-  image: any;
+  por: any;
   fileType: string;
   txID: string;
-  imageSub: Subscription;
+  porSub: Subscription;
   uploadResponse: any;
 
   constructor(
     private igmService: IgmService,
-    private cookieService: CookieService,
     private uploadService: UploadService,
     private router: Router,
   ) {
@@ -67,7 +65,7 @@ export class ProofOfResidenceComponent implements OnInit, OnDestroy {
   }
 
   getPreview() {
-    this.imageSub = new Observable<string>(observer => {
+    this.porSub = new Observable<string>(observer => {
       // Service call
       // read the downloaded image
       let reader = new FileReader();
@@ -86,9 +84,19 @@ export class ProofOfResidenceComponent implements OnInit, OnDestroy {
         console.log('Failed to get preview of POR : ' + error.message);
       });
     }).subscribe((result) => {
-      this.image = result;
-      console.log(this.image);
+      this.por = result;
     });
+  }
+
+
+  validateFile() {
+    console.log("Validating file" + DocumentTypeEnum.PROOF_OF_RESIDENCE);
+    this.igmService.requestValidation(DocumentTypeEnum.PROOF_OF_RESIDENCE).subscribe(a =>
+      {
+        console.log("Validation for POR has been requested");
+        this.onContinue();
+      }
+    )
   }
 
   onContinue() {
@@ -99,8 +107,8 @@ export class ProofOfResidenceComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    if(this.imageSub) {
-      this.imageSub.unsubscribe();
+    if(this.por) {
+      this.por.unsubscribe();
     }
   }
 }

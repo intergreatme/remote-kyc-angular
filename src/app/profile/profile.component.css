@@ -9,6 +9,16 @@
 
 .inside-container {
   margin: 10px;
-  text-align: center;
   border-radius: 10px;
+  display: inline;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
 }
