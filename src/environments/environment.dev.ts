@@ -3,5 +3,5 @@ export const environment = {
   dev: true,
   local: false,
   apiPath: '/api',  //'https://dev.intergreatme.com/kyc/za/api',
-  configId: 'Config ID',
+  configId: '<Config ID>',
 };
