@@ -18,6 +18,30 @@
 }
 
 .column {
-  flex: 33.33%;
-  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  flex: 50%;
+  /* padding: 5px; */
+}
+
+.card-container {
+  width: auto;
+  padding: 8px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-radius: 18px;
+  border-style: solid;
+  margin: 10px;
+  border-width: 2px;
+  background-color: white;
+  border-color: gray;
+  cursor: pointer;
+  }
+
+.image-custom {
+  border: solid;
+  border-radius: 18px;
+  border-color: transparent;
 }

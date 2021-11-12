@@ -7,9 +7,9 @@ export const environment = {
   dev: false,
   local: true,
   apiPath: '/api',
-  configId: '<Config ID>',
-  txID: "<IGM ID>",
-  originID: "<YOUR GUID>",
+  configId: '<CONFIG ID>',
+  txID: "<TX ID>",
+  originID: "<ORIGIN ID>",
 };
 
 /*

@@ -1,14 +1,16 @@
 .main-container {
   margin-top: 5px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   text-align: center;
-  padding: 20px;
   border-radius: 30px;
+  vertical-align: center;
+  font-family: sans-serif;
 }
 
 .block-container {
   margin: 5px;
+  text-align: center;
   border-radius: 30px;
 }
 
@@ -22,11 +24,34 @@
 }
 
 .porCard {
+  text-align: center;
   margin: 10px;
-  padding: 20px;
   border-radius: 30px;
   border-width: 15px;
   background: rgb(255, 255, 255);
   color: black;
   flex: 1;
+}
+
+.image-custom {
+  border: solid;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-color: gray;
+}
+
+.title {
+  background-color: rgb(247, 247, 247);
+  border: solid;
+  border-bottom: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: gray;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around;
 }

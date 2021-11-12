@@ -1,69 +1,105 @@
-<div class="main-container">
-  <h2>ID CARD</h2>
-  <div class="block-container">
-    <div class="row">
-      <div class="cardidcard">
-        <div>
-          <div *ngIf="selfie == null">
-            <img src="../../../../../assets/examples/idCard_selfie.jpg" style="height: 350px; width: 250px;">
-          </div>
-          <div *ngIf="selfie != null">
-            <img src="{{selfie}}" alt="selfie" style="height: 350px; width: 250px;">
-          </div>
-          <p for="selfie" style="font-size: 25px;">Selfie with ID Card</p>
-          <div class="col">
-            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
-              <span>Upload</span>
-              <input #fileInput hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
-                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="cardidcard">
-        <div>
-          <div *ngIf="frontOfCard == null">
-            <img src="../../../../../assets/examples/idCard_front.jpg" style="height: 350px; width: 450px;">
-          </div>
-          <div *ngIf="frontOfCard != null">
-            <img src="{{frontOfCard}}" alt="front of ID card" style="height: 350px; width: 400px;">
-          </div>
-          <p for="id-front" style="font-size: 25px;">ID Card Front</p>
-          <div class="col">
-            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
-              <span>Upload</span>
-              <input #fileInput hidden type="file" (change)="uploadFileForFrontOfCard($event)" placeholder="Upload file"
-                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
-            </button>
+<div style="text-align: center;">
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <p style="font-size: large; font-weight: bold;">ID CARD</p>
+    <button mat-raised-button color="warning" (click)="chooseDifferentDoc()">Choose a different document</button>
+  </div>
+  <p>Please upload your required documents</p>
+  <div>
+    <!-- SELFIE -->
+    <div class="cardidcard">
+      <div>
+        <div class="title" style="width: 250px; height: 35px; margin: auto; padding-top: 5px;">
+          <div>Selfie with ID Card</div>
+          <div>
+            <mat-progress-spinner *ngIf="uploadingSelfie && currentPercentageSelfie <= 100" mode="determinate"
+              [diameter]="32" [value]="currentPercentageSelfie">
+            </mat-progress-spinner>
+            <div *ngIf="selfie != null && !uploadingSelfie">
+              <img src="assets/validated.svg" />
+            </div>
           </div>
         </div>
+        <div *ngIf="selfie == null">
+          <img src="assets/examples/idCard_selfie.jpg" class="image-custom"
+            style="height: 350px; width: 250px;">
+        </div>
+        <div *ngIf="selfie != null">
+          <img src="{{selfie}}" class="image-custom" alt="selfie" style="height: 350px; width: 250px;">
+        </div>
+
+        <div class="col">
+          <button mat-raised-button color="primary" type="button" (click)="fileInputSelfie.click()">
+            <span>Upload selfie</span>
+            <input #fileInputSelfie hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
+              accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+          </button>
+        </div>
       </div>
-      <div class="cardidcard">
-        <div>
-          <div *ngIf="backOfCard == null">
-            <img src="../../../../../assets/examples/idCard_back.jpg" style="height: 350px; width: 450px;">
+    </div>
+
+    <!-- FRONT -->
+    <div class="cardidcard" style="margin-top: 30px;">
+      <div>
+        <div class="title" style="width: 400px; height: 35px; margin: auto; padding-top: 5px;">
+          <div>Front of ID Card</div>
+          <div>
+            <mat-progress-spinner *ngIf="uploadingFront && currentPercentageFront <= 100" mode="determinate"
+              [diameter]="32" [value]="currentPercentageFront">
+            </mat-progress-spinner>
+            <div *ngIf="frontOfCard != null && !uploadingFront">
+              <img src="assets/validated.svg" />
+            </div>
           </div>
-          <div *ngIf="backOfCard != null">
-            <img src="{{backOfCard}}" alt="back of ID card" style="height: 350px; width: 400px;">
+        </div>
+        <div *ngIf="frontOfCard == null">
+          <img src="assets/examples/idCard_front.jpg" class="image-custom" style="height: 300px; width: 400px;">
+        </div>
+        <div *ngIf="frontOfCard != null">
+          <img src="{{frontOfCard}}" class="image-custom" alt="front of ID card" style="height: 300px; width: 400px;">
+        </div>
+
+        <div class="col">
+          <button mat-raised-button color="primary" type="button" (click)="fileInputFront.click()">
+            <span>Upload front</span>
+            <input #fileInputFront hidden type="file" (change)="uploadFileForFrontOfCard($event)"
+              placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="cardidcard" style="margin-top: 30px;">
+      <div>
+        <div class="title" style="width: 400px; height: 35px; margin: auto; padding-top: 5px;">
+          <div>Back of ID Card</div>
+          <div>
+            <mat-progress-spinner *ngIf="uploadingBack && currentPercentageBack <= 100" mode="determinate"
+              [diameter]="32" [value]="currentPercentageBack">
+            </mat-progress-spinner>
+            <div *ngIf="backOfCard != null && !uploadingBack">
+              <img src="assets/validated.svg" />
+            </div>
           </div>
-          <p for="id-back" style="font-size: 25px;">ID Card Back</p>
-          <div class="col">
-            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
-              <span>Upload</span>
-              <input #fileInput hidden type="file" (change)="uploadFileForBackOfCard($event)" placeholder="Upload file"
-                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
-            </button>
-          </div>
+        </div>
+        <div *ngIf="backOfCard == null">
+          <img src="assets/examples/idCard_back.jpg" class="image-custom" style="height: 300px; width: 400px;">
+        </div>
+        <div *ngIf="backOfCard != null">
+          <img src="{{backOfCard}}" alt="back of ID card" class="image-custom" style="height: 300px; width: 400px;">
+        </div>
+
+        <div class="col">
+          <button mat-raised-button color="primary" type="button" (click)="fileInputBack.click()">
+            <span>Upload back</span>
+            <input #fileInputBack hidden type="file" (change)="uploadFileForBackOfCard($event)"
+              placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+          </button>
         </div>
       </div>
     </div>
   </div>
   <div style="vertical-align: center;">
-    <button mat-raised-button color="primary" (click)="validateFile()">Validate ID Card</button>
-  </div>
-  <br>
-  <div style="vertical-align: center;">
-    <button mat-raised-button (click)="onContinue()">Continue</button>
+    <button mat-raised-button color="primary" (click)="onContinue()">Continue</button>
   </div>
 </div>
-

@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://dev.intergreatme.com/kyc/za",
+    "target": "<Endpoint url>",
     "secure": false,
     "changeOrigin": true
   }

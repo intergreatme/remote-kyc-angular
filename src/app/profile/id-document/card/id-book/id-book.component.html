@@ -1,51 +1,75 @@
-<div class="main-container" style="vertical-align: center; font-size: 20px;">
-  <h2>ID BOOK</h2>
-  <div class="block-container">
-    <div class="row">
-      <div class="cardidbook">
-        <div>
-          <div *ngIf="selfie == null">
-            <img src="../../../../../assets/examples/idBook_selfie.jpg" style="height: 350px; width: 250px;">
-          </div>
-          <div *ngIf="selfie != null">
-            <img src="{{selfie}}" alt="selfie" style="height: 350px; width: 250px;">
-          </div>
-          <p for="selfie" style="font-size: 25px;">Selfie with ID Book</p>
-          <div class="col">
-            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
-              <span>Upload</span>
-              <input #fileInput hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
-                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
-            </button>
+<div style="text-align: center;">
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <p style="font-size: large; font-weight: bold;">ID BOOK</p>
+    <button mat-raised-button color="warning" (click)="chooseDifferentDoc()">Choose a different document</button>
+  </div>
+
+  <p>Please upload your required documents</p>
+  <div>
+    <!-- SELFIE -->
+    <div class="cardidbook">
+      <div>
+        <div for="selfie" class="title" style="width: 250px; height: 35px; margin: auto; padding-top: 5px;">
+          <div>Selfie with ID Book</div>
+          <div>
+            <mat-progress-spinner *ngIf="uploadingSelfie && currentPercentageSelfie <= 100" mode="determinate"
+              [diameter]="32" [value]="currentPercentageSelfie">
+            </mat-progress-spinner>
+            <div *ngIf="selfie != null && !uploadingSelfie">
+              <img src="assets/validated.svg" />
+            </div>
           </div>
         </div>
+        <div *ngIf="selfie == null">
+          <img src="assets/examples/idBook_selfie.jpg" class="image-custom" style="height: 350px; width: 250px;">
+        </div>
+        <div *ngIf="selfie != null">
+          <img src="{{selfie}}" alt="selfie" class="image-custom" style="height: 350px; width: 250px;">
+        </div>
+
+        <div class="col">
+          <button mat-raised-button color="primary" type="button" (click)="fileInputSelfie.click()">
+            <span>Upload selfie</span>
+            <input #fileInputSelfie hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
+              accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+          </button>
+        </div>
       </div>
-      <div class="cardidbook">
-        <div>
-          <div *ngIf="inside == null">
-            <img src="../../../../../assets/examples/idBook_inside.jpg" style="height: 350px; width: 400px;">
+    </div>
+
+    <!-- INSIDE -->
+    <div class="cardidbook" style="margin-top: 30px;">
+      <div>
+        <div for="inside" class="title" style="width: 400px; height: 35px; margin: auto; padding-top: 5px;">
+          <div>Inside of ID Book</div>
+          <div>
+            <mat-progress-spinner *ngIf="uploadingInside && currentPercentageInside <= 100" mode="determinate"
+              [diameter]="32" [value]="currentPercentageInside">
+            </mat-progress-spinner>
+            <div *ngIf="inside != null && !uploadingInside">
+              <img src="assets/validated.svg" />
+            </div>
           </div>
-          <div *ngIf="inside != null">
-            <img src="{{inside}}" alt="inside" style="height: 350px; width: 400px;">
-          </div>
-          <p for="inside" style="font-size: 25px;">ID Book Inside</p>
-          <div class="col">
-            <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
-              <span>Upload</span>
-              <input #fileInput hidden type="file" (change)="uploadFileForInside($event)" placeholder="Upload file"
-                accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
-            </button>
-          </div>
+        </div>
+        <div *ngIf="inside == null">
+          <img src="assets/examples/idBook_inside.jpg" class="image-custom" style="height: 300px; width: 400px;">
+        </div>
+        <div *ngIf="inside != null">
+          <img src="{{inside}}" alt="inside" class="image-custom" style="height: 300px; width: 400px;">
+        </div>
+
+        <div class="col">
+          <button mat-raised-button color="primary" type="button" (click)="fileInputInside.click()">
+            <span>Upload inside</span>
+            <input #fileInputInside hidden type="file" (change)="uploadFileForInside($event)" placeholder="Upload file"
+              accept=".pdf,.doc,.docx,.png,.jpeg,.jpg">
+          </button>
         </div>
       </div>
     </div>
   </div>
+
   <div style="vertical-align: center;">
-    <button mat-raised-button color="primary" (click)="validateFile()">Validate ID Book</button>
-  </div>
-  <br>
-  <div style="vertical-align: center;">
-    <button mat-raised-button (click)="onContinue()">Continue</button>
+    <button mat-raised-button color="primary" (click)="onContinue()">Continue</button>
   </div>
 </div>
-

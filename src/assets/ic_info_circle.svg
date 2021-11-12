@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px"
+     height="24px"
+     viewBox="0 0 24 24"
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+
+    <title>ic_info_circle</title>
+    <desc>Created with Sketch.</desc>
+
+    <g id="Symbols"
+       stroke="none"
+       stroke-width="1"
+       fill="none"
+       fill-rule="evenodd">
+        <g id="01-Atoms-/-Icons-/-info_circle-/-#333333">
+            <g id="info_circle">
+                <polygon id="bg"
+                         fill-opacity="0"
+                         fill="#D8D8D8"
+                         points="0 0 24 0 24 24 0 24" />
+                <polyline id="Shape"
+                          stroke="#333333"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          points="12 16.3125 12 10.5 11 10.5" />
+                <path d="M11,16.5 L13,16.5"
+                      id="Shape"
+                      stroke="#333333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                <path d="M18.7175,5.282475 C22.427475,8.99245 22.427475,15.007525 18.7175,18.717475 C15.007525,22.42745
+                         8.99245,22.42745 5.2825,18.717475 C1.572525,15.0075 1.572525,8.992425 5.2825,5.282475
+                         C8.992475,1.5725 15.00755,1.5725 18.7175,5.282475"
+                      id="Shape" stroke="#333333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                <path d="M11.9267725,7.44821862 C12.0244036,7.54584975 12.0244036,7.70414112 11.9267725,7.80177237
+                         C11.8291414,7.8994035 11.67085,7.8994035 11.5732187,7.80177237 C11.4755876,7.70414125
+                         11.4755876,7.54584987 11.5732187,7.44821862 C11.6708499,7.3505875 11.8291412,7.3505875
+                         11.9267725,7.44821862"
+                      id="Shape"
+                      stroke="#333333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                <path d="M11.8383925,7.5366155 C11.887208,7.585431 11.887208,7.66457675 11.8383925,7.71339175
+                         C11.789577,7.76220725 11.7104313,7.76220725 11.6616162,7.71339175 C11.6128008,7.66457625
+                         11.6128008,7.5854305 11.6616162,7.5366155 C11.7104317,7.4878 11.7895775,7.4878
+                         11.8383925,7.5366155"
+                      id="Shape"
+                      stroke="#333333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                <circle id="Oval"
+                        fill="#333333"
+                        cx="11.75"
+                        cy="7.63000011"
+                        r="1" />
+            </g>
+        </g>
+    </g>
+</svg>

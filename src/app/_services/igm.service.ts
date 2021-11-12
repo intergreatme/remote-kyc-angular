@@ -199,7 +199,7 @@ export class IgmService {
     //documentType => ID_BOOK, ID_CARD, PROOF_OF_RESIDENCE
     //Post request that will pass in the documentType as a body with the required headers.
     var authToken = this.cookieService.getCookie("kyc-auth");
-
+    let documentT = { document_type: documentType };
     const httpOptions = {
       headers: new HttpHeaders({
         'config': environment.configId,
@@ -208,7 +208,7 @@ export class IgmService {
       }),
     }
 
-    return this.http.post(environment.apiPath + `/file/requestValidation`, documentType, httpOptions)
+    return this.http.post(environment.apiPath + `/file/requestValidation`, documentT, httpOptions)
       .pipe(map((response: ResponseWrapper<any>) => {
         return response;
       }), catchError(error => {
@@ -242,6 +242,15 @@ export class IgmService {
   //Destroy the auth cookie. This will logout the user.
     return this.http.get(environment.apiPath + `/user/logout`)
     .pipe(map((response: ResponseWrapper<any>) => {
+      return response;
+    }), catchError(error => {
+      return throwError("Unable to logout user " + error);
+    })
+    );
+  }
+
+  getInfo(configID: string, shareID: string) {
+    return this.http.get(environment.apiPath + `/temp/getInfo?config=${configID}&share=${shareID}`).pipe(map((response: any) => {
       return response;
     }), catchError(error => {
       return throwError("Unable to logout user " + error);

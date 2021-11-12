@@ -56,6 +56,8 @@ export class UploadService {
         'config': environment.configId,
         'Authorization': `Bearer ${authToken}`,
       }),
+      reportProgress: true,
+      observe: 'events',
     }
 
     //TODO create a http-post request and pass the form, tell it to report the upload progress.

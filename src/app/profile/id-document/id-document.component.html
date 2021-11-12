@@ -1,38 +1,30 @@
-<div class="main-container" style="font-size: 20px;">
-  <h2>Choose your ID Documentation type</h2>
-  <div class="inside-container">
-    <div class="card shadow rounded;" style="padding: 20px; height: 120px; border-radius: 30px; background: black;
-      color: white;">
+<div style="font-size: 20px; text-align: center;">
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <p style="font-size: large; font-weight: bold;">Choose an ID type</p>
+    <button mat-raised-button color="warning" (click)="onBack()">Back</button>
+  </div>
+  <div class="card-container">
       <div (click)="routeToIdBook()">
         <div class="row">
           <div class="column">
-            <img src="../../assets/examples/idBook_inside_no_border.jpg" height="100px" width="150px">
+            <img src="assets/examples/idBook_inside_no_border.jpg" class="image-custom" height="100px" width="150px">
           </div>
           <div class="column">
-            <p for="ID" style="font-size: 25px;">ID Book</p>
+            <p style="font-weight: 400px; padding: 20px;">ID Book</p>
           </div>
-          <div class="column"></div>
         </div>
       </div>
-    </div>
   </div>
-  <div class="inside-container">
-    <div class="card shadow rounded;"
-      style="padding: 20px; height: 120px;  border-radius: 30px; background: black; color: white;">
+  <div class="card-container">
       <div (click)="routeToIdCard()">
         <div class="row">
           <div class="column">
-            <img src="../../assets/examples/idCard_front_no_border.jpg" height="100px" width="150px">
+            <img src="assets/examples/idCard_front_no_border.jpg" class="image-custom" height="100px" width="150px">
           </div>
           <div class="column">
-            <p for="ID" style="font-size: 25px;">ID Card</p>
+            <p style="font-weight: 400px; padding: 20px;">ID Card</p>
           </div>
-          <div class="column"></div>
         </div>
       </div>
     </div>
-  </div>
-  <div>
-    <button mat-raised-button color="primary" (click)="onBack()">Back</button>
-  </div>
 </div>
