@@ -9,7 +9,7 @@
     <div class="row">
       <div class="porCard">
         <div>
-          <div class="title" style="width: 450px; height: 35px; margin: auto; padding-top: 5px;">
+          <div class="title" style="width: 400px; height: 35px; margin: auto; padding-top: 5px;">
             <div>Proof of Residence</div>
             <div>
               <mat-progress-spinner *ngIf="uploadingPor && currentPercentagePor <= 100" mode="determinate"
@@ -22,14 +22,17 @@
           </div>
           <div *ngIf="por == null">
             <img src="assets/examples/por.png" class="image-custom"
-            style="height: 500px; width: 450px;">
+            style="height: 500px; width: 400px;">
           </div>
           <div *ngIf="por != null">
             <img src="{{por}}" alt="por" class="image-custom"
-            style="height: 500px; width: 450px;">
+            style="height: 500px; width: 400px;">
           </div>
-
-          <div class="col">
+          <div *ngIf="documentRejected && rejectMessage" class="reject" style="width: 400px; margin: auto;">
+            <div style="font-weight: bold;">{{rejectMessage.title}}</div>
+            <p>{{rejectMessage.body}}</p>
+          </div>
+          <div class="col" style="margin-top: 10px;">
             <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
               <span>Upload</span>
               <input #fileInput hidden type="file" (change)="uploadFile($event)" placeholder="Upload file"

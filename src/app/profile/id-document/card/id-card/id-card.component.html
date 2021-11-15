@@ -26,8 +26,11 @@
         <div *ngIf="selfie != null">
           <img src="{{selfie}}" class="image-custom" alt="selfie" style="height: 350px; width: 250px;">
         </div>
-
-        <div class="col">
+        <div *ngIf="documentRejected && rejectMessageSelfie" class="reject" style="width: 250px; margin: auto;">
+          <div style="font-weight: bold;">{{rejectMessageSelfie.title}}</div>
+          <p>{{rejectMessageSelfie.body}}</p>
+        </div>
+        <div class="col" style="margin-top: 10px;">
           <button mat-raised-button color="primary" type="button" (click)="fileInputSelfie.click()">
             <span>Upload selfie</span>
             <input #fileInputSelfie hidden type="file" (change)="uploadFileForSelfie($event)" placeholder="Upload file"
@@ -57,8 +60,11 @@
         <div *ngIf="frontOfCard != null">
           <img src="{{frontOfCard}}" class="image-custom" alt="front of ID card" style="height: 300px; width: 400px;">
         </div>
-
-        <div class="col">
+        <div *ngIf="documentRejected && rejectMessageFront" class="reject" style="width: 400px; margin: auto;">
+          <div style="font-weight: bold;">{{rejectMessageFront.title}}</div>
+          <p>{{rejectMessageFront.body}}</p>
+        </div>
+        <div class="col" style="margin-top: 10px;">
           <button mat-raised-button color="primary" type="button" (click)="fileInputFront.click()">
             <span>Upload front</span>
             <input #fileInputFront hidden type="file" (change)="uploadFileForFrontOfCard($event)"
@@ -88,8 +94,11 @@
         <div *ngIf="backOfCard != null">
           <img src="{{backOfCard}}" alt="back of ID card" class="image-custom" style="height: 300px; width: 400px;">
         </div>
-
-        <div class="col">
+        <div *ngIf="documentRejected && rejectMessageBack" class="reject" style="width: 400px; margin: auto;">
+          <div style="font-weight: bold;">{{rejectMessageBack.title}}</div>
+          <p>{{rejectMessageBack.body}}</p>
+        </div>
+        <div class="col" style="margin-top: 10px;">
           <button mat-raised-button color="primary" type="button" (click)="fileInputBack.click()">
             <span>Upload back</span>
             <input #fileInputBack hidden type="file" (change)="uploadFileForBackOfCard($event)"

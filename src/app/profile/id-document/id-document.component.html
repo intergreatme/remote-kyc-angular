@@ -12,6 +12,9 @@
           <div class="column">
             <p style="font-weight: 400px; padding: 20px;">ID Book</p>
           </div>
+          <div *ngIf="idBookRejected" class="column">
+            <img src="assets/failed.svg" height="50px" width="50px" />
+          </div>
         </div>
       </div>
   </div>
@@ -23,6 +26,9 @@
           </div>
           <div class="column">
             <p style="font-weight: 400px; padding: 20px;">ID Card</p>
+          </div>
+          <div *ngIf="idCardRejected" class="column">
+            <img src="assets/failed.svg" height="50px" width="50px" />
           </div>
         </div>
       </div>

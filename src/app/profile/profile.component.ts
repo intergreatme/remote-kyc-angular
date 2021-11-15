@@ -74,8 +74,8 @@ export class ProfileComponent implements OnInit {
       .pipe().subscribe((wrappedResponse: ResponseWrapper<ProfileResponse>) => {
         const code = wrappedResponse.code;
         if (code != ResponseWrapperCodeEnum.OK) {
-          console.log("Profile Failed: " + code);
-        } else {
+          console.log("Retrieving the user profile failed: " + code);
+         } else {
           console.log("Response OK, continue processing response");
           const response = wrappedResponse.data;
           let profileData = {

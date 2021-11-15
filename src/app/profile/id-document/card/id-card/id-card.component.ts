@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { DocumentFileTypeEnum } from 'src/app/_models/document-file-type.enum';
 import { DocumentTypeEnum } from 'src/app/_models/document-type.enum';
+import { ProfileResponse } from 'src/app/_models/profile-response.model';
 import { ResponseWrapperCodeEnum } from 'src/app/_models/response-wrapper-code.enum';
 import { ResponseWrapper } from 'src/app/_models/response-wrapper.model';
 import { UploadProgressModel } from 'src/app/_models/upload-progress.model';
@@ -28,6 +29,11 @@ export class IdCardComponent implements OnInit, OnDestroy {
   frontSub: Subscription;
   backSub: Subscription;
 
+  rejectMessageFront = { body: '', id: '', title: '' };
+  rejectMessageSelfie = { body: '', id: '', title: '' };
+  rejectMessageBack = { body: '', id: '', title: '' };
+  documentRejected = false;
+
   uploadResponse: any;
   uploadingSelfie = false;
   currentPercentageSelfie = 0;
@@ -43,6 +49,7 @@ export class IdCardComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+    this.getProfile();
   }
 
   uploadFileForSelfie(event) {
@@ -264,5 +271,87 @@ export class IdCardComponent implements OnInit, OnDestroy {
 
   chooseDifferentDoc() {
     this.router.navigate(['id-documentation']);
+  }
+
+  getProfile() {
+    console.log("Getting profile");
+    this.igmService.getProfile()
+      .pipe().subscribe((wrappedResponse: ResponseWrapper<ProfileResponse>) => {
+        const code = wrappedResponse.code;
+        if (code != ResponseWrapperCodeEnum.OK) {
+          console.log("Retrieving the user profile failed: " + code);
+        } else {
+          console.log("Response OK, continue processing response");
+          const response = wrappedResponse.data;
+          let profileData = {
+            id: response['id'],
+            origin_tx_id: response['origin_tx_id'],
+            unique_field: response['unique_field'],
+            document_number: response['document_number'],
+            passport_country: response['passport_country'],
+            use_passport: response['use_passport'],
+            first_name: response['first_name'],
+            last_name: response['last_name'],
+            email_address: response['email_address'],
+            documents: response['documents'],
+            share_status: response['share_status'],
+            share_success: response['share_success'],
+            liveliness_state: response['liveliness_state'],
+            address: response['address'],
+          }
+          console.log(profileData);
+
+          if (profileData.documents != null) {
+            for (let i = 0; i <= profileData.documents.length - 1; i++) {
+              if (!profileData.documents[i].doc_type || !profileData.documents[i].status) {
+                console.log("There is NO document for [" + i + "]");
+                continue;
+              }
+              console.log("There is a document for [" + i + "]");
+              switch (profileData.documents[i].doc_type) {
+                case 'ID_CARD':
+                  if (profileData.documents[i].status == 'VALIDATION_FAILED' || profileData.documents[i].status == 'VERIFICATION_FAILED') {
+                    this.documentRejected = true;
+
+                    this.rejectMessageSelfie = profileData.documents[i].files[0].message;
+                    this.rejectMessageFront = profileData.documents[i].files[1].message;
+                    this.rejectMessageBack = profileData.documents[i].files[2].message;
+
+                    console.log(this.rejectMessageSelfie);
+                    console.log(this.rejectMessageFront);
+                    console.log(this.rejectMessageBack);
+
+
+                    if (this.rejectMessageSelfie != null) {
+                      this.rejectMessageSelfie.body = profileData.documents[i].files[0].message.body;
+                      this.rejectMessageSelfie.id = profileData.documents[i].files[0].message.id;
+                      this.rejectMessageSelfie.title = profileData.documents[i].files[0].message.title;
+                    }
+
+                    if (this.rejectMessageFront) {
+                      this.rejectMessageFront.body = profileData.documents[i].files[1].message.body;
+                      this.rejectMessageFront.id = profileData.documents[i].files[1].message.id;
+                      this.rejectMessageFront.title = profileData.documents[i].files[1].message.title;
+                    }
+
+                    if (this.rejectMessageBack) {
+                      this.rejectMessageBack.body = profileData.documents[i].files[2].message.body;
+                      this.rejectMessageBack.id = profileData.documents[i].files[2].message.id;
+                      this.rejectMessageBack.title = profileData.documents[i].files[2].message.title;
+                    }
+                  } else {
+                    console.log(profileData.documents[i].doc_type + " is not in a reject state.");
+                  }
+                  break;
+                case 'ID_BOOK':
+                case 'RSA_PASSPORT':
+                case 'PROOF_OF_RESIDENCE':
+                default:
+                  break;
+              }
+            }
+          }
+        }
+      })
   }
 }
